@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="isd_dashboard.AiDashboard" owl="1">
+        <div class="o_action isd-ai-dashboard h-100 d-flex flex-column" style="background:#f8f9fa;">
+
+            <!-- Header -->
+            <div class="bg-white border-bottom p-3 shadow-sm" style="flex-shrink:0;">
+                <div class="d-flex align-items-center mb-2">
+                    <h5 class="mb-0 fw-bold text-primary">My Dashboard</h5>
+                    <span class="badge bg-primary ms-2" style="font-size:0.7rem;">AI</span>
+                </div>
+
+                <!-- Row 1: Report Type + Period Type -->
+                <div class="d-flex gap-2 align-items-center mb-2 flex-wrap">
+                    <select class="form-select" style="max-width:220px;"
+                            t-on-change="onReportTypeChange"
+                            t-att-disabled="state.loading">
+                        <t t-foreach="reportTypes" t-as="rt" t-key="rt.value">
+                            <option t-att-value="rt.value"
+                                    t-att-selected="state.reportType === rt.value">
+                                <t t-esc="rt.label"/>
+                            </option>
+                        </t>
+                    </select>
+
+                    <select class="form-select" style="max-width:140px;"
+                            t-on-change="onPeriodTypeChange"
+                            t-att-disabled="state.loading">
+                        <t t-foreach="periodTypes" t-as="pt" t-key="pt.value">
+                            <option t-att-value="pt.value"
+                                    t-att-selected="state.periodType === pt.value">
+                                <t t-esc="pt.label"/>
+                            </option>
+                        </t>
+                    </select>
+                </div>
+
+                <!-- Row 2: Period selectors + Buttons -->
+                <div class="d-flex gap-2 align-items-center flex-wrap">
+                    <!-- Period 1 -->
+                    <select class="form-select" style="max-width:280px;"
+                            t-on-change="onPeriodChange"
+                            t-att-disabled="state.loading">
+                        <option value="">-- Ch&#7885;n k&#7923; --</option>
+                        <t t-foreach="state.periodOptions" t-as="opt" t-key="opt.value">
+                            <option t-att-value="opt.value"
+                                    t-att-selected="state.periodValue === opt.value">
+                                <t t-esc="opt.label"/>
+                            </option>
+                        </t>
+                    </select>
+
+                    <!-- Period 2 (comparison only) -->
+                    <t t-if="state.reportType === 'comparison'">
+                        <span class="text-muted fw-bold">vs</span>
+                        <select class="form-select" style="max-width:280px;"
+                                t-on-change="onComparePeriodChange"
+                                t-att-disabled="state.loading">
+                            <option value="">-- So s&#225;nh v&#7899;i --</option>
+                            <t t-foreach="state.periodOptions" t-as="opt" t-key="opt.value">
+                                <option t-att-value="opt.value"
+                                        t-att-selected="state.comparePeriodValue === opt.value">
+                                    <t t-esc="opt.label"/>
+                                </option>
+                            </t>
+                        </select>
+                    </t>
+
+                    <button type="button" class="btn btn-primary"
+                            t-att-disabled="state.loading or !state.periodValue"
+                            t-on-click="onSubmit" style="white-space:nowrap;">
+                        Xem b&#225;o c&#225;o
+                    </button>
+                    <button type="button" class="btn btn-outline-warning"
+                            t-att-disabled="state.loading or !state.periodValue"
+                            t-on-click="onRefresh" style="white-space:nowrap;"
+                            title="L&#224;m m&#7899;i d&#7919; li&#7879;u (t&#7889;n token AI)">
+                        L&#224;m m&#7899;i
+                    </button>
+                    <button type="button" class="btn btn-outline-secondary"
+                            t-on-click="onToggleSaved" style="white-space:nowrap;">
+                        <t t-if="state.showSaved">&#7848;n</t>
+                        <t t-else="">B&#225;o c&#225;o &#273;&#227; l&#432;u</t>
+                        <span class="badge bg-secondary ms-1" t-esc="state.savedReports.length"/>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Content Area -->
+            <div class="flex-grow-1 overflow-auto p-3">
+
+                <!-- Saved Reports Panel -->
+                <div t-if="state.showSaved and !state.loading" class="mb-3">
+                    <div class="card border">
+                        <div class="card-header bg-light fw-bold">B&#225;o c&#225;o &#273;&#227; l&#432;u</div>
+                        <div class="card-body p-0">
+                            <t t-if="state.savedReports.length === 0">
+                                <div class="text-muted text-center py-3">Ch&#432;a c&#243; b&#225;o c&#225;o n&#224;o.</div>
+                            </t>
+                            <table t-else="" class="table table-sm table-hover mb-0">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>Lo&#7841;i</th>
+                                        <th>K&#7923;</th>
+                                        <th>Ng&#224;y t&#7841;o</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <t t-foreach="state.savedReports" t-as="r" t-key="r.id">
+                                        <tr>
+                                            <td>
+                                                <span t-if="r.report_type === 'revenue'" class="badge text-bg-primary">Doanh thu</span>
+                                                <span t-if="r.report_type === 'comparison'" class="badge text-bg-info">So s&#225;nh</span>
+                                            </td>
+                                            <td>
+                                                <t t-esc="r.period_label"/>
+                                                <t t-if="r.compare_period_label">
+                                                    <span class="text-muted"> vs </span>
+                                                    <t t-esc="r.compare_period_label"/>
+                                                </t>
+                                            </td>
+                                            <td class="text-muted" t-esc="r.create_date"/>
+                                            <td>
+                                                <button type="button"
+                                                        class="btn btn-sm btn-outline-primary"
+                                                        t-att-data-report-id="r.id"
+                                                        t-on-click="onViewSaved">
+                                                    Xem
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    </t>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Initial -->
+                <div t-if="!state.loading and !state.hasResult and !state.error and !state.showSaved" class="text-center py-5">
+                    <h6 class="text-muted">Ch&#7885;n lo&#7841;i b&#225;o c&#225;o v&#224; k&#7923; b&#225;o c&#225;o &#7903; tr&#234;n &#273;&#7875; xem.</h6>
+                    <p class="text-muted" style="font-size:0.85rem;">N&#7871;u b&#225;o c&#225;o &#273;&#227; c&#243; s&#7861;n s&#7869; hi&#7875;n th&#7883; ngay, kh&#244;ng t&#7889;n token AI.</p>
+                </div>
+
+                <!-- Loading -->
+                <div t-if="state.loading" class="text-center py-5">
+                    <div class="mb-3">
+                        <div class="spinner-grow text-primary mx-1" style="width:0.6rem;height:0.6rem;animation-delay:0s;" role="status"/>
+                        <div class="spinner-grow text-primary mx-1" style="width:0.6rem;height:0.6rem;animation-delay:0.15s;" role="status"/>
+                        <div class="spinner-grow text-primary mx-1" style="width:0.6rem;height:0.6rem;animation-delay:0.3s;" role="status"/>
+                    </div>
+                    <div class="fw-semibold text-dark mb-1" t-esc="state.loadingText"/>
+                    <div class="text-muted" style="font-size:0.8rem;">
+                        <span t-esc="state.elapsed"/>s
+                    </div>
+                    <div class="mx-auto mt-3" style="max-width:300px;">
+                        <div class="progress" style="height:4px;">
+                            <div class="progress-bar progress-bar-striped progress-bar-animated bg-primary"
+                                 role="progressbar"
+                                 t-att-style="'width:' + (Math.min(state.elapsed, 90)) + '%'"/>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Error -->
+                <div t-if="state.error and !state.loading" class="alert alert-danger" role="alert">
+                    <span t-esc="state.error"/>
+                    <button type="button" class="btn btn-sm btn-outline-danger ms-2" t-on-click="onClear">&#272;&#243;ng</button>
+                </div>
+
+                <!-- HTML Result -->
+                <div t-if="state.hasResult and !state.loading">
+                    <div class="mb-2 d-flex gap-2 align-items-center">
+                        <button type="button" class="btn btn-sm btn-outline-secondary" t-on-click="onClear">Quay l&#7841;i</button>
+                        <button type="button" class="btn btn-sm btn-outline-primary" t-on-click="onPrint">In b&#225;o c&#225;o</button>
+                        <span t-if="state.currentLabel" class="text-muted ms-2" style="font-size:0.85rem;" t-esc="state.currentLabel"/>
+                    </div>
+                    <div id="isd-html-output" class="isd-html-output"></div>
+                </div>
+
+            </div>
+        </div>
+    </t>
+</templates>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- AI Dashboard client action -->
+    <record id="action_isd_ai_dashboard" model="ir.actions.client">
+        <field name="name">My Dashboard</field>
+        <field name="tag">isd_ai_dashboard</field>
+    </record>
+
+    <!-- Override My Dashboard menu to point to AI Dashboard -->
+    <record id="board.menu_board_my_dash" model="ir.ui.menu">
+        <field name="action" ref="action_isd_ai_dashboard"/>
+    </record>
+
+    <!-- Root menu for ISD Dashboard app -->
+    <menuitem id="menu_isd_dashboard_root"
+              name="AI Dashboard"
+              action="action_isd_ai_dashboard"
+              web_icon="isd_dashboard,static/description/icon.png"
+              sequence="1"/>
+</odoo>

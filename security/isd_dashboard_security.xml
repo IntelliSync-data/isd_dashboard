@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="module_isd_dashboard" model="ir.module.category">
+        <field name="name">ISD Dashboard</field>
+        <field name="sequence">90</field>
+    </record>
+</odoo>

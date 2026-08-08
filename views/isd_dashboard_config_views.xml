@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="res_config_settings_view_form_isd_dashboard" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.isd_dashboard</field>
+        <field name="model">res.config.settings</field>
+        <field name="priority" eval="10"/>
+        <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form" position="inside">
+                <app data-string="AI Dashboard" string="AI Dashboard" name="isd_dashboard">
+                    <block title="Claude API" id="isd_dashboard_claude_api">
+                        <setting string="Anthropic API Key" help="API key từ console.anthropic.com">
+                            <div class="content-group">
+                                <div class="mt8">
+                                    <field name="isd_dashboard_api_key" password="True" class="w-100" placeholder="sk-ant-api03-..."/>
+                                </div>
+                            </div>
+                        </setting>
+                        <setting string="Claude Model" help="Sonnet 4.6 là lựa chọn tốt nhất: đủ thông minh và không quá chậm">
+                            <div class="content-group">
+                                <div class="mt8">
+                                    <field name="isd_dashboard_claude_model"/>
+                                </div>
+                            </div>
+                        </setting>
+                    </block>
+                    <block title="MCP PhotoApp" id="isd_dashboard_mcp">
+                        <setting string="MCP Token" help="Token để Claude truy cập dữ liệu PhotoApp">
+                            <div class="content-group">
+                                <div class="mt8">
+                                    <field name="isd_dashboard_mcp_token_id" options="{'no_create': True}" class="w-100"/>
+                                </div>
+                            </div>
+                        </setting>
+                        <setting string="Tên MCP Server" help="Tên hiển thị cho MCP server khi Claude sử dụng tools">
+                            <div class="content-group">
+                                <div class="mt8">
+                                    <field name="isd_dashboard_mcp_server_name" class="w-100"/>
+                                </div>
+                            </div>
+                        </setting>
+                    </block>
+                    <block title="System Prompt" id="isd_dashboard_system_prompt">
+                        <setting string="System Prompt" help="Hướng dẫn Claude cách trả lời và format HTML">
+                            <div class="content-group w-100">
+                                <div class="mt8">
+                                    <field name="isd_dashboard_system_prompt" widget="text" class="w-100" style="min-height:200px;font-family:monospace;font-size:12px;"/>
+                                </div>
+                            </div>
+                        </setting>
+                    </block>
+                </app>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="action_isd_dashboard_config" model="ir.actions.act_window">
+        <field name="name">Settings</field>
+        <field name="res_model">res.config.settings</field>
+        <field name="view_mode">form</field>
+        <field name="target">inline</field>
+        <field name="context">{'module': 'isd_dashboard', 'bin_size': False}</field>
+    </record>
+</odoo>

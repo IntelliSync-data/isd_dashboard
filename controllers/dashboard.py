@@ -262,6 +262,14 @@ def _call_claude_bg(db_name, task_id, report_id, api_key, claude_model, system_p
                 "UPDATE isd_dashboard_task SET status='done', result_html=%s WHERE task_id=%s",
                 (html or '', task_id),
             )
+            # Increment prompt count
+            cr.execute(
+                "UPDATE ir_config_parameter SET value = (COALESCE(value,'0')::int + 1)::text WHERE key = 'isd_dashboard.prompt_count'",
+            )
+            if cr.rowcount == 0:
+                cr.execute(
+                    "INSERT INTO ir_config_parameter (key, value, create_uid, create_date, write_uid, write_date) VALUES ('isd_dashboard.prompt_count', '1', 1, NOW() AT TIME ZONE 'UTC', 1, NOW() AT TIME ZONE 'UTC')",
+                )
             # Update report record
             if report_id and html and is_complete:
                 cr.execute(
@@ -323,6 +331,12 @@ class IsdDashboardController(http.Controller):
         api_key, claude_model, system_prompt, mcp_url, mcp_server_name = self._get_claude_config()
         if not api_key:
             return {'error': 'Chua cau hinh Anthropic API Key.'}
+
+        ICP = request.env['ir.config_parameter'].sudo()
+        prompt_limit = int(ICP.get_param('isd_dashboard.prompt_limit', '0'))
+        prompt_count = int(ICP.get_param('isd_dashboard.prompt_count', '0'))
+        if prompt_limit and prompt_count >= prompt_limit:
+            return {'error': f'Da dat gioi han {prompt_limit} prompt. Vui long lien he quan tri vien de nang cap.'}
 
         task_id = str(uuid.uuid4())[:8]
         request.env['isd.dashboard.task'].sudo().create({

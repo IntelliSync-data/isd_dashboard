@@ -34,6 +34,13 @@ class ResConfigSettings(models.TransientModel):
     isd_dashboard_system_prompt = fields.Text(
         string='System Prompt',
     )
+    isd_dashboard_prompt_count = fields.Integer(
+        string='Prompt Count', readonly=True,
+    )
+    isd_dashboard_prompt_limit = fields.Integer(
+        string='Prompt Limit',
+        help='Maximum number of prompts allowed. 0 = unlimited.',
+    )
 
     def get_values(self):
         res = super().get_values()
@@ -45,6 +52,8 @@ class ResConfigSettings(models.TransientModel):
             isd_dashboard_mcp_token_id=int(token_id) if token_id and token_id.isdigit() else False,
             isd_dashboard_mcp_server_name=ICP.get_param('isd_dashboard.mcp_server_name', 'KClickPhotoApp'),
             isd_dashboard_system_prompt=ICP.get_param('isd_dashboard.system_prompt', _DEFAULT_SYSTEM_PROMPT),
+            isd_dashboard_prompt_count=int(ICP.get_param('isd_dashboard.prompt_count', '0')),
+            isd_dashboard_prompt_limit=int(ICP.get_param('isd_dashboard.prompt_limit', '0')),
         )
         return res
 
@@ -56,3 +65,4 @@ class ResConfigSettings(models.TransientModel):
         ICP.set_param('isd_dashboard.mcp_token_id', str(self.isd_dashboard_mcp_token_id.id) if self.isd_dashboard_mcp_token_id else '')
         ICP.set_param('isd_dashboard.mcp_server_name', self.isd_dashboard_mcp_server_name or 'KClickPhotoApp')
         ICP.set_param('isd_dashboard.system_prompt', self.isd_dashboard_system_prompt or _DEFAULT_SYSTEM_PROMPT)
+        ICP.set_param('isd_dashboard.prompt_limit', str(self.isd_dashboard_prompt_limit or 0))

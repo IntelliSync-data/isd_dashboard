@@ -8,6 +8,26 @@
         <field name="arch" type="xml">
             <xpath expr="//form" position="inside">
                 <app data-string="AI Dashboard" string="AI Dashboard" name="isd_dashboard">
+                    <block title="Usage" id="isd_dashboard_usage">
+                        <setting string="Prompt Usage" help="Number of prompts sent successfully">
+                            <div class="content-group">
+                                <div class="row mt8">
+                                    <div class="col-4 text-center">
+                                        <div class="h1 text-primary">
+                                            <field name="isd_dashboard_prompt_count"/>
+                                        </div>
+                                        <div class="text-muted">Prompts Sent</div>
+                                    </div>
+                                    <div class="col-4 text-center">
+                                        <div class="h1 text-warning">
+                                            <field name="isd_dashboard_prompt_limit"/>
+                                        </div>
+                                        <div class="text-muted">Limit (0 = unlimited)</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </setting>
+                    </block>
                     <block title="Claude API" id="isd_dashboard_claude_api">
                         <setting string="Anthropic API Key" help="API key từ console.anthropic.com">
                             <div class="content-group">

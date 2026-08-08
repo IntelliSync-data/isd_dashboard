@@ -23,8 +23,9 @@ class ResConfigSettings(models.TransientModel):
         default='claude-sonnet-4-6',
     )
     isd_dashboard_mcp_token_id = fields.Many2one(
-        'isd.mcp.config',
-        string='MCP Config (PhotoApp)',
+        'isd.mcp.photoapp.token',
+        string='MCP Token (PhotoApp)',
+        domain="[('is_active', '=', True)]",
     )
     isd_dashboard_mcp_server_name = fields.Char(
         string='Tên MCP Server',

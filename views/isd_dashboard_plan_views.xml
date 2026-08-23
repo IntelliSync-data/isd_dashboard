@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Plan Form View -->
+    <record id="view_isd_dashboard_plan_form" model="ir.ui.view">
+        <field name="name">isd.dashboard.plan.form</field>
+        <field name="model">isd.dashboard.plan</field>
+        <field name="arch" type="xml">
+            <form string="Usage Plan">
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="name" placeholder="e.g. August 2026 Plan"/></h1>
+                    </div>
+                    <group>
+                        <group string="Period">
+                            <field name="date_from"/>
+                            <field name="date_to"/>
+                            <field name="active"/>
+                        </group>
+                        <group string="Limits">
+                            <field name="prompt_limit"/>
+                            <field name="report_limit"/>
+                        </group>
+                    </group>
+                    <group string="Current Usage">
+                        <group>
+                            <field name="prompt_used"/>
+                            <field name="report_count"/>
+                        </group>
+                    </group>
+                    <group string="Note">
+                        <field name="note" nolabel="1" colspan="2"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Plan List View -->
+    <record id="view_isd_dashboard_plan_list" model="ir.ui.view">
+        <field name="name">isd.dashboard.plan.list</field>
+        <field name="model">isd.dashboard.plan</field>
+        <field name="arch" type="xml">
+            <list string="Usage Plans">
+                <field name="name"/>
+                <field name="date_from"/>
+                <field name="date_to"/>
+                <field name="prompt_limit"/>
+                <field name="prompt_used"/>
+                <field name="report_limit"/>
+                <field name="report_count"/>
+                <field name="active"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Plan Action -->
+    <record id="action_isd_dashboard_plan" model="ir.actions.act_window">
+        <field name="name">Usage Plans</field>
+        <field name="res_model">isd.dashboard.plan</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <!-- Usage List View -->
+    <record id="view_isd_dashboard_usage_list" model="ir.ui.view">
+        <field name="name">isd.dashboard.usage.list</field>
+        <field name="model">isd.dashboard.usage</field>
+        <field name="arch" type="xml">
+            <list string="Daily Usage">
+                <field name="usage_date"/>
+                <field name="count" sum="Total"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Usage Pivot View -->
+    <record id="view_isd_dashboard_usage_pivot" model="ir.ui.view">
+        <field name="name">isd.dashboard.usage.pivot</field>
+        <field name="model">isd.dashboard.usage</field>
+        <field name="arch" type="xml">
+            <pivot string="Usage Summary">
+                <field name="usage_date" type="row" interval="month"/>
+                <field name="count" type="measure"/>
+            </pivot>
+        </field>
+    </record>
+
+    <!-- Usage Graph View -->
+    <record id="view_isd_dashboard_usage_graph" model="ir.ui.view">
+        <field name="name">isd.dashboard.usage.graph</field>
+        <field name="model">isd.dashboard.usage</field>
+        <field name="arch" type="xml">
+            <graph string="Usage Chart" type="bar">
+                <field name="usage_date" interval="day"/>
+                <field name="count" type="measure"/>
+            </graph>
+        </field>
+    </record>
+
+    <!-- Usage Action -->
+    <record id="action_isd_dashboard_usage" model="ir.actions.act_window">
+        <field name="name">Usage Log</field>
+        <field name="res_model">isd.dashboard.usage</field>
+        <field name="view_mode">list,pivot,graph</field>
+    </record>
+
+    <!-- Menu -->
+    <menuitem id="menu_isd_dashboard_config"
+              name="Configuration"
+              parent="menu_isd_dashboard_root"
+              sequence="90"
+              groups="isd_dashboard.group_dashboard_it_support"/>
+
+    <menuitem id="menu_isd_dashboard_plan"
+              name="Usage Plans"
+              parent="menu_isd_dashboard_config"
+              action="action_isd_dashboard_plan"
+              sequence="10"/>
+
+    <menuitem id="menu_isd_dashboard_usage"
+              name="Usage Log"
+              parent="menu_isd_dashboard_config"
+              action="action_isd_dashboard_usage"
+              sequence="20"/>
+
+</odoo>

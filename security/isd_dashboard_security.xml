@@ -4,4 +4,24 @@
         <field name="name">ISD Dashboard</field>
         <field name="sequence">90</field>
     </record>
+
+    <!-- User: can view dashboard and saved reports only -->
+    <record id="group_dashboard_user" model="res.groups">
+        <field name="name">User</field>
+        <field name="category_id" ref="module_isd_dashboard"/>
+    </record>
+
+    <!-- Manager: can run prompts + everything User can do -->
+    <record id="group_dashboard_manager" model="res.groups">
+        <field name="name">Manager</field>
+        <field name="category_id" ref="module_isd_dashboard"/>
+        <field name="implied_ids" eval="[(4, ref('group_dashboard_user'))]"/>
+    </record>
+
+    <!-- IT Support: can access configuration + everything Manager can do -->
+    <record id="group_dashboard_it_support" model="res.groups">
+        <field name="name">IT Support</field>
+        <field name="category_id" ref="module_isd_dashboard"/>
+        <field name="implied_ids" eval="[(4, ref('group_dashboard_manager'))]"/>
+    </record>
 </odoo>

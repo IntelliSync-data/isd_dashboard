@@ -9,6 +9,7 @@
         'security/ir.model.access.csv',
         'views/isd_dashboard_config_views.xml',
         'views/isd_dashboard_views.xml',
+        'views/isd_dashboard_plan_views.xml',
     ],
     'assets': {
         'web.assets_backend': [

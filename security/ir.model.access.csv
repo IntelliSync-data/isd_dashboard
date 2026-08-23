@@ -1,4 +1,10 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_isd_dashboard_task_user,isd.dashboard.task user,model_isd_dashboard_task,base.group_user,1,1,1,1
-access_isd_dashboard_report_cache_user,isd.dashboard.report.cache user,model_isd_dashboard_report_cache,base.group_user,1,1,1,1
-access_isd_dashboard_report_user,isd.dashboard.report user,model_isd_dashboard_report,base.group_user,1,1,1,1
+access_isd_dashboard_task_user,isd.dashboard.task user,model_isd_dashboard_task,isd_dashboard.group_dashboard_user,1,1,1,1
+access_isd_dashboard_report_cache_user,isd.dashboard.report.cache user,model_isd_dashboard_report_cache,isd_dashboard.group_dashboard_user,1,0,0,0
+access_isd_dashboard_report_cache_manager,isd.dashboard.report.cache manager,model_isd_dashboard_report_cache,isd_dashboard.group_dashboard_manager,1,1,1,1
+access_isd_dashboard_report_user,isd.dashboard.report user,model_isd_dashboard_report,isd_dashboard.group_dashboard_user,1,0,0,0
+access_isd_dashboard_report_manager,isd.dashboard.report manager,model_isd_dashboard_report,isd_dashboard.group_dashboard_manager,1,1,1,1
+access_isd_dashboard_plan_it,isd.dashboard.plan it,model_isd_dashboard_plan,isd_dashboard.group_dashboard_it_support,1,1,1,1
+access_isd_dashboard_plan_user,isd.dashboard.plan user,model_isd_dashboard_plan,isd_dashboard.group_dashboard_user,1,0,0,0
+access_isd_dashboard_usage_it,isd.dashboard.usage it,model_isd_dashboard_usage,isd_dashboard.group_dashboard_it_support,1,1,1,1
+access_isd_dashboard_usage_user,isd.dashboard.usage user,model_isd_dashboard_usage,isd_dashboard.group_dashboard_user,1,0,0,0

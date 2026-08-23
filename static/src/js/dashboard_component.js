@@ -53,6 +53,9 @@ export class IsdAiDashboard extends Component {
             // Saved reports
             savedReports: [],
             showSaved: false,
+
+            // Permissions
+            canRunPrompt: false,
         });
 
         this.reportTypes = REPORT_TYPES;
@@ -62,6 +65,12 @@ export class IsdAiDashboard extends Component {
         this._elapsedTimer = null;
 
         onWillStart(async () => {
+            try {
+                const result = await rpc("/isd_dashboard/check_permission", {});
+                this.state.canRunPrompt = result.can_run_prompt || false;
+            } catch {
+                this.state.canRunPrompt = false;
+            }
             await this._loadPeriodOptions();
             await this._loadSavedReports();
         });

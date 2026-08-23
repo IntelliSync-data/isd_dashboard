@@ -66,17 +66,19 @@
                         </select>
                     </t>
 
-                    <button type="button" class="btn btn-primary"
-                            t-att-disabled="state.loading or !state.periodValue"
-                            t-on-click="onSubmit" style="white-space:nowrap;">
-                        Xem b&#225;o c&#225;o
-                    </button>
-                    <button type="button" class="btn btn-outline-warning"
-                            t-att-disabled="state.loading or !state.periodValue"
-                            t-on-click="onRefresh" style="white-space:nowrap;"
-                            title="L&#224;m m&#7899;i d&#7919; li&#7879;u (t&#7889;n token AI)">
-                        L&#224;m m&#7899;i
-                    </button>
+                    <t t-if="state.canRunPrompt">
+                        <button type="button" class="btn btn-primary"
+                                t-att-disabled="state.loading or !state.periodValue"
+                                t-on-click="onSubmit" style="white-space:nowrap;">
+                            Xem b&#225;o c&#225;o
+                        </button>
+                        <button type="button" class="btn btn-outline-warning"
+                                t-att-disabled="state.loading or !state.periodValue"
+                                t-on-click="onRefresh" style="white-space:nowrap;"
+                                title="L&#224;m m&#7899;i d&#7919; li&#7879;u (t&#7889;n token AI)">
+                            L&#224;m m&#7899;i
+                        </button>
+                    </t>
                     <button type="button" class="btn btn-outline-secondary"
                             t-on-click="onToggleSaved" style="white-space:nowrap;">
                         <t t-if="state.showSaved">&#7848;n</t>

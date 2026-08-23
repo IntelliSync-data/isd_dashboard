@@ -262,13 +262,17 @@ def _call_claude_bg(db_name, task_id, report_id, api_key, claude_model, system_p
                 "UPDATE isd_dashboard_task SET status='done', result_html=%s WHERE task_id=%s",
                 (html or '', task_id),
             )
-            # Increment prompt count
+            # Increment daily usage count
+            from datetime import datetime as dt
+            today_str = dt.utcnow().strftime('%Y-%m-%d')
             cr.execute(
-                "UPDATE ir_config_parameter SET value = (COALESCE(value,'0')::int + 1)::text WHERE key = 'isd_dashboard.prompt_count'",
+                "UPDATE isd_dashboard_usage SET count = count + 1 WHERE usage_date = %s",
+                (today_str,),
             )
             if cr.rowcount == 0:
                 cr.execute(
-                    "INSERT INTO ir_config_parameter (key, value, create_uid, create_date, write_uid, write_date) VALUES ('isd_dashboard.prompt_count', '1', 1, NOW() AT TIME ZONE 'UTC', 1, NOW() AT TIME ZONE 'UTC')",
+                    "INSERT INTO isd_dashboard_usage (usage_date, count, create_uid, create_date, write_uid, write_date) VALUES (%s, 1, 1, NOW() AT TIME ZONE 'UTC', 1, NOW() AT TIME ZONE 'UTC')",
+                    (today_str,),
                 )
             # Update report record
             if report_id and html and is_complete:
@@ -332,11 +336,13 @@ class IsdDashboardController(http.Controller):
         if not api_key:
             return {'error': 'Chua cau hinh Anthropic API Key.'}
 
-        ICP = request.env['ir.config_parameter'].sudo()
-        prompt_limit = int(ICP.get_param('isd_dashboard.prompt_limit', '0'))
-        prompt_count = int(ICP.get_param('isd_dashboard.prompt_count', '0'))
-        if prompt_limit and prompt_count >= prompt_limit:
-            return {'error': f'Da dat gioi han {prompt_limit} prompt. Vui long lien he quan tri vien de nang cap.'}
+        plan = request.env['isd.dashboard.plan'].sudo().get_active_plan()
+        over_limit = False
+        over_count = 0
+        if plan and plan.prompt_limit:
+            if plan.prompt_used >= plan.prompt_limit:
+                over_limit = True
+                over_count = plan.prompt_used - plan.prompt_limit + 1
 
         task_id = str(uuid.uuid4())[:8]
         request.env['isd.dashboard.task'].sudo().create({
@@ -352,7 +358,21 @@ class IsdDashboardController(http.Controller):
             daemon=True,
         )
         thread.start()
-        return {'task_id': task_id}
+        result = {'task_id': task_id}
+        if over_limit:
+            result['over_limit'] = True
+            result['over_count'] = over_count
+        return result
+
+    def _enforce_report_limit(self, Report):
+        """Delete oldest reports if over the saved report limit from active plan."""
+        plan = request.env['isd.dashboard.plan'].sudo().get_active_plan()
+        if not plan or not plan.report_limit:
+            return
+        count = Report.search_count([('state', '=', 'done')])
+        if count >= plan.report_limit:
+            excess = Report.search([('state', '=', 'done')], order='create_date asc', limit=count - plan.report_limit + 1)
+            excess.unlink()
 
     # ── Period options ──
 
@@ -444,6 +464,9 @@ class IsdDashboardController(http.Controller):
             if existing and force_refresh:
                 existing.unlink()
 
+            # Enforce saved report limit
+            self._enforce_report_limit(Report)
+
             prompt = _build_revenue_prompt(label, start, end)
             report = Report.create({
                 'report_type': 'revenue',
@@ -491,6 +514,8 @@ class IsdDashboardController(http.Controller):
 
             if existing and force_refresh:
                 existing.unlink()
+
+            self._enforce_report_limit(Report)
 
             prompt = _build_comparison_prompt(label, start, end, label2, start2, end2)
             report = Report.create({

@@ -2,3 +2,7 @@ id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_isd_dashboard_task_user,isd.dashboard.task user,model_isd_dashboard_task,base.group_user,1,1,1,1
 access_isd_dashboard_report_cache_user,isd.dashboard.report.cache user,model_isd_dashboard_report_cache,base.group_user,1,1,1,1
 access_isd_dashboard_report_user,isd.dashboard.report user,model_isd_dashboard_report,base.group_user,1,1,1,1
+access_isd_dashboard_plan_admin,isd.dashboard.plan admin,model_isd_dashboard_plan,base.group_system,1,1,1,1
+access_isd_dashboard_plan_user,isd.dashboard.plan user,model_isd_dashboard_plan,base.group_user,1,0,0,0
+access_isd_dashboard_usage_admin,isd.dashboard.usage admin,model_isd_dashboard_usage,base.group_system,1,1,1,1
+access_isd_dashboard_usage_user,isd.dashboard.usage user,model_isd_dashboard_usage,base.group_user,1,0,0,0

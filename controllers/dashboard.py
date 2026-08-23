@@ -374,6 +374,14 @@ class IsdDashboardController(http.Controller):
             excess = Report.search([('state', '=', 'done')], order='create_date asc', limit=count - plan.report_limit + 1)
             excess.unlink()
 
+    # ── Permission check ──
+
+    @http.route('/isd_dashboard/check_permission', type='json', auth='user', methods=['POST'], csrf=False)
+    def check_permission(self, **kwargs):
+        return {
+            'can_run_prompt': request.env.user.has_group('isd_dashboard.group_dashboard_manager'),
+        }
+
     # ── Period options ──
 
     @http.route('/isd_dashboard/period_options', type='json', auth='user', methods=['POST'], csrf=False)

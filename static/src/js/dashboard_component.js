@@ -34,6 +34,7 @@ export class IsdAiDashboard extends Component {
 
     setup() {
         this.notification = useService("notification");
+        this.user = useService("user");
         this.state = useState({
             // Report config
             reportType: "revenue",
@@ -53,6 +54,9 @@ export class IsdAiDashboard extends Component {
             // Saved reports
             savedReports: [],
             showSaved: false,
+
+            // Permissions
+            canRunPrompt: false,
         });
 
         this.reportTypes = REPORT_TYPES;
@@ -62,6 +66,7 @@ export class IsdAiDashboard extends Component {
         this._elapsedTimer = null;
 
         onWillStart(async () => {
+            this.state.canRunPrompt = await this.user.hasGroup("isd_dashboard.group_dashboard_manager");
             await this._loadPeriodOptions();
             await this._loadSavedReports();
         });

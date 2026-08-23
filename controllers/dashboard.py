@@ -431,6 +431,8 @@ class IsdDashboardController(http.Controller):
     def submit_report(self, report_type='revenue', period_type='month', period_value='',
                       compare_period_value='', force_refresh=False, **kwargs):
         """Submit a report request. Returns existing report or spawns Claude."""
+        if not request.env.user.has_group('isd_dashboard.group_dashboard_manager'):
+            return {'error': 'Bạn không có quyền chạy prompt. Liên hệ quản trị viên.'}
         if not period_value:
             return {'error': 'Chưa chọn kỳ báo cáo.'}
 

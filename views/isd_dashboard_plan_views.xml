@@ -109,7 +109,7 @@
               name="Configuration"
               parent="menu_isd_dashboard_root"
               sequence="90"
-              groups="base.group_system"/>
+              groups="isd_dashboard.group_dashboard_it_support"/>
 
     <menuitem id="menu_isd_dashboard_plan"
               name="Usage Plans"

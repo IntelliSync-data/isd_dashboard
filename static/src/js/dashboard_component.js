@@ -75,14 +75,21 @@ export class IsdAiDashboard extends Component {
 
     async _loadPeriodOptions() {
         try {
-            const options = await rpc("/isd_dashboard/period_options", {
+            const result = await rpc("/isd_dashboard/period_options", {
                 period_type: this.state.periodType,
             });
-            this.state.periodOptions = options || [];
+            if (result && result.error) {
+                console.error("Period options error:", result.error);
+                this.state.periodOptions = [];
+                this.state.error = result.error;
+            } else {
+                this.state.periodOptions = Array.isArray(result) ? result : [];
+            }
             this.state.periodValue = "";
             this.state.comparePeriodValue = "";
         } catch (err) {
             console.error("Failed to load period options:", err);
+            this.state.periodOptions = [];
         }
     }
 

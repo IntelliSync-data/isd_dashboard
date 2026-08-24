@@ -387,11 +387,17 @@ class IsdDashboardController(http.Controller):
     @http.route('/isd_dashboard/period_options', type='json', auth='user', methods=['POST'], csrf=False)
     def period_options(self, period_type='month', **kwargs):
         """Return available period options for a given period type."""
+        try:
+            return self._build_period_options(period_type)
+        except Exception as e:
+            _logger.exception('Error building period options for %s', period_type)
+            return {'error': str(e)}
+
+    def _build_period_options(self, period_type):
         today = date.today()
         options = []
 
         if period_type == 'week':
-            # Last 12 weeks
             for i in range(12):
                 d = today - timedelta(weeks=i)
                 iso = d.isocalendar()
@@ -401,9 +407,8 @@ class IsdDashboardController(http.Controller):
                 options.append({'value': value, 'label': label})
 
         elif period_type == 'month':
-            # Last 12 months
             year, month = today.year, today.month
-            for _ in range(12):
+            for i in range(12):
                 value = f'{year}-{month:02d}'
                 label = f'{_(MONTH_NAMES[month])} {year}'
                 options.append({'value': value, 'label': label})
@@ -413,11 +418,10 @@ class IsdDashboardController(http.Controller):
                     year -= 1
 
         elif period_type == 'quarter':
-            # Last 8 quarters
             year = today.year
             current_q = (today.month - 1) // 3 + 1
             q, y = current_q, year
-            for _ in range(8):
+            for i in range(8):
                 value = f'{y}-Q{q}'
                 label = _('Quarter') + f' {q}/{y}'
                 options.append({'value': value, 'label': label})
@@ -427,7 +431,6 @@ class IsdDashboardController(http.Controller):
                     y -= 1
 
         elif period_type == 'year':
-            # Last 3 years
             for y in range(today.year, today.year - 3, -1):
                 options.append({'value': str(y), 'label': _('Year') + f' {y}'})
 

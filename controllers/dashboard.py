@@ -109,9 +109,9 @@ def _year_range(year):
     return date(year, 1, 1), date(year, 12, 31)
 
 
-MONTH_NAMES_VI = [
-    '', 'Tháng 1', 'Tháng 2', 'Tháng 3', 'Tháng 4', 'Tháng 5', 'Tháng 6',
-    'Tháng 7', 'Tháng 8', 'Tháng 9', 'Tháng 10', 'Tháng 11', 'Tháng 12',
+MONTH_NAMES = [
+    '', 'January', 'February', 'March', 'April', 'May', 'June',
+    'July', 'August', 'September', 'October', 'November', 'December',
 ]
 
 
@@ -127,19 +127,19 @@ def _parse_period(period_type, period_value):
     if period_type == 'week':
         year, w = period_value.split('-W')
         start, end = _week_range(int(year), int(w))
-        label = f'Tuần {w}/{year}'
+        label = _('Week') + f' {w}/{year}'
     elif period_type == 'month':
         year, month = period_value.split('-')
         start, end = _month_range(int(year), int(month))
-        label = f'{MONTH_NAMES_VI[int(month)]}/{year}'
+        label = f'{_(MONTH_NAMES[int(month)])} {year}'
     elif period_type == 'quarter':
         year, q = period_value.split('-Q')
         start, end = _quarter_range(int(year), int(q))
-        label = f'Quý {q}/{year}'
+        label = _('Quarter') + f' {q}/{year}'
     elif period_type == 'year':
         year = int(period_value)
         start, end = _year_range(year)
-        label = f'Năm {year}'
+        label = _('Year') + f' {year}'
     else:
         raise ValueError(f'Invalid period_type: {period_type}')
 
@@ -397,7 +397,7 @@ class IsdDashboardController(http.Controller):
                 iso = d.isocalendar()
                 value = f'{iso[0]}-W{iso[1]:02d}'
                 start, end = _week_range(iso[0], iso[1])
-                label = f'Tuần {iso[1]} ({start.strftime("%d/%m")} - {end.strftime("%d/%m/%Y")})'
+                label = _('Week') + f' {iso[1]} ({start.strftime("%d/%m")} - {end.strftime("%d/%m/%Y")})'
                 options.append({'value': value, 'label': label})
 
         elif period_type == 'month':
@@ -405,7 +405,7 @@ class IsdDashboardController(http.Controller):
             year, month = today.year, today.month
             for _ in range(12):
                 value = f'{year}-{month:02d}'
-                label = f'{MONTH_NAMES_VI[month]}/{year}'
+                label = f'{_(MONTH_NAMES[month])} {year}'
                 options.append({'value': value, 'label': label})
                 month -= 1
                 if month == 0:
@@ -419,7 +419,7 @@ class IsdDashboardController(http.Controller):
             q, y = current_q, year
             for _ in range(8):
                 value = f'{y}-Q{q}'
-                label = f'Quý {q}/{y}'
+                label = _('Quarter') + f' {q}/{y}'
                 options.append({'value': value, 'label': label})
                 q -= 1
                 if q == 0:
@@ -429,7 +429,7 @@ class IsdDashboardController(http.Controller):
         elif period_type == 'year':
             # Last 3 years
             for y in range(today.year, today.year - 3, -1):
-                options.append({'value': str(y), 'label': f'Năm {y}'})
+                options.append({'value': str(y), 'label': _('Year') + f' {y}'})
 
         return options
 

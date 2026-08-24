@@ -629,3 +629,75 @@ msgstr "Số báo cáo lưu tối đa. 0 = không giới hạn."
 #: sql_constraints:isd.dashboard.usage
 msgid "Only one usage record per date."
 msgstr "Chỉ một bản ghi sử dụng cho mỗi ngày."
+
+#. module: isd_dashboard
+#: code:addons/isd_dashboard/controllers/dashboard.py:0
+#, python-format
+msgid "January"
+msgstr "Tháng 1"
+
+#. module: isd_dashboard
+#: code:addons/isd_dashboard/controllers/dashboard.py:0
+#, python-format
+msgid "February"
+msgstr "Tháng 2"
+
+#. module: isd_dashboard
+#: code:addons/isd_dashboard/controllers/dashboard.py:0
+#, python-format
+msgid "March"
+msgstr "Tháng 3"
+
+#. module: isd_dashboard
+#: code:addons/isd_dashboard/controllers/dashboard.py:0
+#, python-format
+msgid "April"
+msgstr "Tháng 4"
+
+#. module: isd_dashboard
+#: code:addons/isd_dashboard/controllers/dashboard.py:0
+#, python-format
+msgid "May"
+msgstr "Tháng 5"
+
+#. module: isd_dashboard
+#: code:addons/isd_dashboard/controllers/dashboard.py:0
+#, python-format
+msgid "June"
+msgstr "Tháng 6"
+
+#. module: isd_dashboard
+#: code:addons/isd_dashboard/controllers/dashboard.py:0
+#, python-format
+msgid "July"
+msgstr "Tháng 7"
+
+#. module: isd_dashboard
+#: code:addons/isd_dashboard/controllers/dashboard.py:0
+#, python-format
+msgid "August"
+msgstr "Tháng 8"
+
+#. module: isd_dashboard
+#: code:addons/isd_dashboard/controllers/dashboard.py:0
+#, python-format
+msgid "September"
+msgstr "Tháng 9"
+
+#. module: isd_dashboard
+#: code:addons/isd_dashboard/controllers/dashboard.py:0
+#, python-format
+msgid "October"
+msgstr "Tháng 10"
+
+#. module: isd_dashboard
+#: code:addons/isd_dashboard/controllers/dashboard.py:0
+#, python-format
+msgid "November"
+msgstr "Tháng 11"
+
+#. module: isd_dashboard
+#: code:addons/isd_dashboard/controllers/dashboard.py:0
+#, python-format
+msgid "December"
+msgstr "Tháng 12"

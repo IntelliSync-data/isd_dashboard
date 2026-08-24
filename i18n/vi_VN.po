@@ -394,133 +394,133 @@ msgid "Usage Chart"
 msgstr "Biểu đồ sử dụng"
 
 #. module: isd_dashboard
-#: code:addons/isd_dashboard/controllers/dashboard.py
+#: code:addons/isd_dashboard/controllers/dashboard.py:0
 #, python-format
 msgid "The anthropic library is not installed."
 msgstr "Thư viện anthropic chưa được cài đặt."
 
 #. module: isd_dashboard
-#: code:addons/isd_dashboard/controllers/dashboard.py
+#: code:addons/isd_dashboard/controllers/dashboard.py:0
 #, python-format
 msgid "Anthropic API Key is not configured."
 msgstr "Chưa cấu hình Anthropic API Key."
 
 #. module: isd_dashboard
-#: code:addons/isd_dashboard/controllers/dashboard.py
+#: code:addons/isd_dashboard/controllers/dashboard.py:0
 #, python-format
 msgid "You do not have permission to run prompts. Contact the administrator."
 msgstr "Bạn không có quyền chạy prompt. Liên hệ quản trị viên."
 
 #. module: isd_dashboard
-#: code:addons/isd_dashboard/controllers/dashboard.py
+#: code:addons/isd_dashboard/controllers/dashboard.py:0
 #, python-format
 msgid "Please select a report period."
 msgstr "Chưa chọn kỳ báo cáo."
 
 #. module: isd_dashboard
-#: code:addons/isd_dashboard/controllers/dashboard.py
+#: code:addons/isd_dashboard/controllers/dashboard.py:0
 #, python-format
 msgid "Report period error: %s"
 msgstr "Lỗi kỳ báo cáo: %s"
 
 #. module: isd_dashboard
-#: code:addons/isd_dashboard/controllers/dashboard.py
+#: code:addons/isd_dashboard/controllers/dashboard.py:0
 #, python-format
 msgid "Please select a comparison period."
 msgstr "Chưa chọn kỳ so sánh."
 
 #. module: isd_dashboard
-#: code:addons/isd_dashboard/controllers/dashboard.py
+#: code:addons/isd_dashboard/controllers/dashboard.py:0
 #, python-format
 msgid "Comparison period error: %s"
 msgstr "Lỗi kỳ so sánh: %s"
 
 #. module: isd_dashboard
-#: code:addons/isd_dashboard/controllers/dashboard.py
+#: code:addons/isd_dashboard/controllers/dashboard.py:0
 #, python-format
 msgid "Invalid report type."
 msgstr "Loại báo cáo không hợp lệ."
 
 #. module: isd_dashboard
-#: code:addons/isd_dashboard/controllers/dashboard.py
+#: code:addons/isd_dashboard/controllers/dashboard.py:0
 #, python-format
 msgid "Report not found."
 msgstr "Báo cáo không tồn tại."
 
 #. module: isd_dashboard
-#: code:addons/isd_dashboard/static/src/js/dashboard_component.js
+#: code:addons/isd_dashboard/static/src/js/dashboard_component.js:0
 #, javascript-format
 msgid "Connecting to AI system..."
 msgstr "Đang kết nối tới hệ thống AI..."
 
 #. module: isd_dashboard
-#: code:addons/isd_dashboard/static/src/js/dashboard_component.js
+#: code:addons/isd_dashboard/static/src/js/dashboard_component.js:0
 #, javascript-format
 msgid "AI is querying data from the system..."
 msgstr "AI đang truy vấn dữ liệu từ hệ thống..."
 
 #. module: isd_dashboard
-#: code:addons/isd_dashboard/static/src/js/dashboard_component.js
+#: code:addons/isd_dashboard/static/src/js/dashboard_component.js:0
 #, javascript-format
 msgid "Collecting transaction and revenue data..."
 msgstr "Đang thu thập dữ liệu giao dịch và doanh thu..."
 
 #. module: isd_dashboard
-#: code:addons/isd_dashboard/static/src/js/dashboard_component.js
+#: code:addons/isd_dashboard/static/src/js/dashboard_component.js:0
 #, javascript-format
 msgid "AI is analyzing and aggregating data..."
 msgstr "AI đang phân tích và tổng hợp dữ liệu..."
 
 #. module: isd_dashboard
-#: code:addons/isd_dashboard/static/src/js/dashboard_component.js
+#: code:addons/isd_dashboard/static/src/js/dashboard_component.js:0
 #, javascript-format
 msgid "Generating charts and visual reports..."
 msgstr "Đang tạo biểu đồ và báo cáo trực quan..."
 
 #. module: isd_dashboard
-#: code:addons/isd_dashboard/static/src/js/dashboard_component.js
+#: code:addons/isd_dashboard/static/src/js/dashboard_component.js:0
 #, javascript-format
 msgid "Finalizing report, please wait..."
 msgstr "Đang hoàn thiện báo cáo, vui lòng chờ thêm..."
 
 #. module: isd_dashboard
-#: code:addons/isd_dashboard/static/src/js/dashboard_component.js
+#: code:addons/isd_dashboard/static/src/js/dashboard_component.js:0
 #, javascript-format
 msgid "Report almost done, verifying data..."
 msgstr "Báo cáo gần hoàn thành, đang kiểm tra lại dữ liệu..."
 
 #. module: isd_dashboard
-#: code:addons/isd_dashboard/static/src/js/dashboard_component.js
+#: code:addons/isd_dashboard/static/src/js/dashboard_component.js:0
 #, javascript-format
 msgid "Almost finished, just a few more seconds..."
 msgstr "Sắp xong rồi, chỉ thêm vài giây nữa..."
 
 #. module: isd_dashboard
-#: code:addons/isd_dashboard/static/src/js/dashboard_component.js
+#: code:addons/isd_dashboard/static/src/js/dashboard_component.js:0
 #, javascript-format
 msgid "Already available — no AI tokens used."
 msgstr "Đã có sẵn — không tốn token AI."
 
 #. module: isd_dashboard
-#: code:addons/isd_dashboard/static/src/js/dashboard_component.js
+#: code:addons/isd_dashboard/static/src/js/dashboard_component.js:0
 #, javascript-format
 msgid "Cannot connect to server."
 msgstr "Không thể kết nối đến server."
 
 #. module: isd_dashboard
-#: code:addons/isd_dashboard/static/src/js/dashboard_component.js
+#: code:addons/isd_dashboard/static/src/js/dashboard_component.js:0
 #, javascript-format
 msgid "Error loading report."
 msgstr "Lỗi khi tải báo cáo."
 
 #. module: isd_dashboard
-#: code:addons/isd_dashboard/static/src/js/dashboard_component.js
+#: code:addons/isd_dashboard/static/src/js/dashboard_component.js:0
 #, javascript-format
 msgid "Connection error. Please try again."
 msgstr "Lỗi kết nối. Vui lòng thử lại."
 
 #. module: isd_dashboard
-#: code:addons/isd_dashboard/static/src/js/dashboard_component.js
+#: code:addons/isd_dashboard/static/src/js/dashboard_component.js:0
 #, javascript-format
 msgid "Report"
 msgstr "Báo cáo"

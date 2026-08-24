@@ -1,0 +1,631 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* isd_dashboard
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-08-24 00:00+0000\n"
+"PO-Revision-Date: 2026-08-24 00:00+0000\n"
+"Last-Translator: \n"
+"Language-Team: Vietnamese\n"
+"Language: vi_VN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#. module: isd_dashboard
+#: model:ir.model,name:isd_dashboard.model_isd_dashboard_report
+msgid "Dashboard Report"
+msgstr "Báo cáo Dashboard"
+
+#. module: isd_dashboard
+#: model:ir.model,name:isd_dashboard.model_isd_dashboard_report_cache
+msgid "Dashboard Report Cache"
+msgstr "Bộ nhớ đệm báo cáo Dashboard"
+
+#. module: isd_dashboard
+#: model:ir.model,name:isd_dashboard.model_isd_dashboard_task
+msgid "AI Dashboard Task"
+msgstr "Tác vụ AI Dashboard"
+
+#. module: isd_dashboard
+#: model:ir.model,name:isd_dashboard.model_isd_dashboard_plan
+msgid "Dashboard Usage Plan"
+msgstr "Gói sử dụng Dashboard"
+
+#. module: isd_dashboard
+#: model:ir.model,name:isd_dashboard.model_isd_dashboard_usage
+msgid "Dashboard Daily Usage"
+msgstr "Lượt sử dụng Dashboard hàng ngày"
+
+#. module: isd_dashboard
+#: model_terms:ir.ui.view,arch_db:isd_dashboard.action_isd_ai_dashboard
+msgid "My Dashboard"
+msgstr "Dashboard của tôi"
+
+#. module: isd_dashboard
+#: model:ir.actions.act_window,name:isd_dashboard.action_isd_dashboard_config
+msgid "Settings"
+msgstr "Cài đặt"
+
+#. module: isd_dashboard
+#: model:ir.ui.menu,name:isd_dashboard.menu_isd_dashboard_root
+msgid "AI Dashboard"
+msgstr "AI Dashboard"
+
+#. module: isd_dashboard
+#: model:ir.ui.menu,name:isd_dashboard.menu_isd_dashboard_config
+msgid "Configuration"
+msgstr "Cấu hình"
+
+#. module: isd_dashboard
+#: model:ir.ui.menu,name:isd_dashboard.menu_isd_dashboard_plan
+#: model:ir.actions.act_window,name:isd_dashboard.action_isd_dashboard_plan
+msgid "Usage Plans"
+msgstr "Gói sử dụng"
+
+#. module: isd_dashboard
+#: model:ir.ui.menu,name:isd_dashboard.menu_isd_dashboard_usage
+#: model:ir.actions.act_window,name:isd_dashboard.action_isd_dashboard_usage
+msgid "Usage Log"
+msgstr "Nhật ký sử dụng"
+
+#. module: isd_dashboard
+#: model:ir.module.category,name:isd_dashboard.module_isd_dashboard
+msgid "ISD Dashboard"
+msgstr "ISD Dashboard"
+
+#. module: isd_dashboard
+#: model:res.groups,name:isd_dashboard.group_dashboard_user
+msgid "User"
+msgstr "Người dùng"
+
+#. module: isd_dashboard
+#: model:res.groups,name:isd_dashboard.group_dashboard_manager
+msgid "Manager"
+msgstr "Quản lý"
+
+#. module: isd_dashboard
+#: model:res.groups,name:isd_dashboard.group_dashboard_it_support
+msgid "IT Support"
+msgstr "Hỗ trợ IT"
+
+#. module: isd_dashboard
+#: model:isd.dashboard.report,field_description:isd_dashboard.field_isd_dashboard_report__report_type
+msgid "Report Type"
+msgstr "Loại báo cáo"
+
+#. module: isd_dashboard
+#: model:isd.dashboard.report,selection:isd_dashboard.field_isd_dashboard_report__report_type
+msgid "Revenue Report"
+msgstr "Báo cáo doanh thu"
+
+#. module: isd_dashboard
+#: model:isd.dashboard.report,selection:isd_dashboard.field_isd_dashboard_report__report_type
+msgid "Revenue Comparison"
+msgstr "So sánh doanh thu"
+
+#. module: isd_dashboard
+#: model:isd.dashboard.report,field_description:isd_dashboard.field_isd_dashboard_report__period_type
+msgid "Period Type"
+msgstr "Loại kỳ"
+
+#. module: isd_dashboard
+#: model:isd.dashboard.report,selection:isd_dashboard.field_isd_dashboard_report__period_type
+msgid "Week"
+msgstr "Tuần"
+
+#. module: isd_dashboard
+#: model:isd.dashboard.report,selection:isd_dashboard.field_isd_dashboard_report__period_type
+msgid "Month"
+msgstr "Tháng"
+
+#. module: isd_dashboard
+#: model:isd.dashboard.report,selection:isd_dashboard.field_isd_dashboard_report__period_type
+msgid "Quarter"
+msgstr "Quý"
+
+#. module: isd_dashboard
+#: model:isd.dashboard.report,selection:isd_dashboard.field_isd_dashboard_report__period_type
+msgid "Year"
+msgstr "Năm"
+
+#. module: isd_dashboard
+#: model:isd.dashboard.report,field_description:isd_dashboard.field_isd_dashboard_report__period_start
+msgid "Period Start"
+msgstr "Từ ngày"
+
+#. module: isd_dashboard
+#: model:isd.dashboard.report,field_description:isd_dashboard.field_isd_dashboard_report__period_end
+msgid "Period End"
+msgstr "Đến ngày"
+
+#. module: isd_dashboard
+#: model:isd.dashboard.report,field_description:isd_dashboard.field_isd_dashboard_report__period_label
+msgid "Period Label"
+msgstr "Kỳ báo cáo"
+
+#. module: isd_dashboard
+#: model:isd.dashboard.report,field_description:isd_dashboard.field_isd_dashboard_report__compare_period_start
+msgid "Compare Period Start"
+msgstr "So sánh từ ngày"
+
+#. module: isd_dashboard
+#: model:isd.dashboard.report,field_description:isd_dashboard.field_isd_dashboard_report__compare_period_end
+msgid "Compare Period End"
+msgstr "So sánh đến ngày"
+
+#. module: isd_dashboard
+#: model:isd.dashboard.report,field_description:isd_dashboard.field_isd_dashboard_report__compare_period_label
+msgid "Compare Period Label"
+msgstr "Kỳ so sánh"
+
+#. module: isd_dashboard
+#: model:isd.dashboard.report,field_description:isd_dashboard.field_isd_dashboard_report__result_html
+msgid "Result HTML"
+msgstr "Kết quả HTML"
+
+#. module: isd_dashboard
+#: model:isd.dashboard.report,field_description:isd_dashboard.field_isd_dashboard_report__prompt_used
+msgid "Prompt"
+msgstr "Prompt"
+
+#. module: isd_dashboard
+#: model:isd.dashboard.report,field_description:isd_dashboard.field_isd_dashboard_report__state
+msgid "Status"
+msgstr "Trạng thái"
+
+#. module: isd_dashboard
+#: model:isd.dashboard.report,selection:isd_dashboard.field_isd_dashboard_report__state
+msgid "Generating"
+msgstr "Đang tạo"
+
+#. module: isd_dashboard
+#: model:isd.dashboard.report,selection:isd_dashboard.field_isd_dashboard_report__state
+msgid "Done"
+msgstr "Hoàn thành"
+
+#. module: isd_dashboard
+#: model:isd.dashboard.report,selection:isd_dashboard.field_isd_dashboard_report__state
+msgid "Error"
+msgstr "Lỗi"
+
+#. module: isd_dashboard
+#: model:isd.dashboard.report,field_description:isd_dashboard.field_isd_dashboard_report__error_message
+msgid "Error Message"
+msgstr "Thông báo lỗi"
+
+#. module: isd_dashboard
+#: model:isd.dashboard.report.cache,field_description:isd_dashboard.field_isd_dashboard_report_cache__report_key
+msgid "Report Key"
+msgstr "Khóa báo cáo"
+
+#. module: isd_dashboard
+#: model:isd.dashboard.report.cache,field_description:isd_dashboard.field_isd_dashboard_report_cache__label
+msgid "Label"
+msgstr "Nhãn"
+
+#. module: isd_dashboard
+#: model:isd.dashboard.report.cache,field_description:isd_dashboard.field_isd_dashboard_report_cache__date_from
+msgid "Date From"
+msgstr "Từ ngày"
+
+#. module: isd_dashboard
+#: model:isd.dashboard.report.cache,field_description:isd_dashboard.field_isd_dashboard_report_cache__date_to
+msgid "Date To"
+msgstr "Đến ngày"
+
+#. module: isd_dashboard
+#: model:isd.dashboard.report.cache,field_description:isd_dashboard.field_isd_dashboard_report_cache__prompt_used
+msgid "Prompt Used"
+msgstr "Prompt đã dùng"
+
+#. module: isd_dashboard
+#: model:isd.dashboard.task,field_description:isd_dashboard.field_isd_dashboard_task__task_id
+msgid "Task ID"
+msgstr "Mã tác vụ"
+
+#. module: isd_dashboard
+#: model:isd.dashboard.task,selection:isd_dashboard.field_isd_dashboard_task__status
+msgid "Pending"
+msgstr "Đang chờ"
+
+#. module: isd_dashboard
+#: model:isd.dashboard.plan,field_description:isd_dashboard.field_isd_dashboard_plan__name
+msgid "Plan Name"
+msgstr "Tên gói"
+
+#. module: isd_dashboard
+#: model:isd.dashboard.plan,field_description:isd_dashboard.field_isd_dashboard_plan__date_from
+msgid "From"
+msgstr "Từ"
+
+#. module: isd_dashboard
+#: model:isd.dashboard.plan,field_description:isd_dashboard.field_isd_dashboard_plan__date_to
+msgid "To"
+msgstr "Đến"
+
+#. module: isd_dashboard
+#: model:isd.dashboard.plan,field_description:isd_dashboard.field_isd_dashboard_plan__prompt_limit
+msgid "Prompt Limit"
+msgstr "Giới hạn Prompt"
+
+#. module: isd_dashboard
+#: model:isd.dashboard.plan,field_description:isd_dashboard.field_isd_dashboard_plan__report_limit
+msgid "Report Limit"
+msgstr "Giới hạn báo cáo"
+
+#. module: isd_dashboard
+#: model:isd.dashboard.plan,field_description:isd_dashboard.field_isd_dashboard_plan__prompt_used
+msgid "Prompts Used"
+msgstr "Prompt đã dùng"
+
+#. module: isd_dashboard
+#: model:isd.dashboard.plan,field_description:isd_dashboard.field_isd_dashboard_plan__report_count
+msgid "Reports Saved"
+msgstr "Báo cáo đã lưu"
+
+#. module: isd_dashboard
+#: model:isd.dashboard.plan,field_description:isd_dashboard.field_isd_dashboard_plan__note
+msgid "Note"
+msgstr "Ghi chú"
+
+#. module: isd_dashboard
+#: model:isd.dashboard.usage,field_description:isd_dashboard.field_isd_dashboard_usage__usage_date
+msgid "Date"
+msgstr "Ngày"
+
+#. module: isd_dashboard
+#: model:isd.dashboard.usage,field_description:isd_dashboard.field_isd_dashboard_usage__count
+msgid "Prompt Count"
+msgstr "Số lượt prompt"
+
+#. module: isd_dashboard
+#: model:res.config.settings,field_description:isd_dashboard.field_res_config_settings__isd_dashboard_api_key
+msgid "Anthropic API Key"
+msgstr "Anthropic API Key"
+
+#. module: isd_dashboard
+#: model:res.config.settings,help:isd_dashboard.field_res_config_settings__isd_dashboard_api_key
+msgid "API key from console.anthropic.com (sk-ant-api03-...)"
+msgstr "API key từ console.anthropic.com (sk-ant-api03-...)"
+
+#. module: isd_dashboard
+#: model:res.config.settings,field_description:isd_dashboard.field_res_config_settings__isd_dashboard_claude_model
+msgid "Claude Model"
+msgstr "Mô hình Claude"
+
+#. module: isd_dashboard
+#: model:res.config.settings,selection:isd_dashboard.field_res_config_settings__isd_dashboard_claude_model
+msgid "Claude Haiku 4.5 — Fast, cheapest"
+msgstr "Claude Haiku 4.5 — Nhanh, rẻ nhất"
+
+#. module: isd_dashboard
+#: model:res.config.settings,selection:isd_dashboard.field_res_config_settings__isd_dashboard_claude_model
+msgid "Claude Sonnet 4.6 — Balanced (recommended)"
+msgstr "Claude Sonnet 4.6 — Cân bằng (khuyến nghị)"
+
+#. module: isd_dashboard
+#: model:res.config.settings,selection:isd_dashboard.field_res_config_settings__isd_dashboard_claude_model
+msgid "Claude Opus 4.6 — Most powerful, slower"
+msgstr "Claude Opus 4.6 — Mạnh nhất, chậm hơn"
+
+#. module: isd_dashboard
+#: model:res.config.settings,field_description:isd_dashboard.field_res_config_settings__isd_dashboard_mcp_token_id
+msgid "MCP Token (PhotoApp)"
+msgstr "MCP Token (PhotoApp)"
+
+#. module: isd_dashboard
+#: model:res.config.settings,field_description:isd_dashboard.field_res_config_settings__isd_dashboard_mcp_server_name
+msgid "MCP Server Name"
+msgstr "Tên MCP Server"
+
+#. module: isd_dashboard
+#: model:res.config.settings,field_description:isd_dashboard.field_res_config_settings__isd_dashboard_system_prompt
+msgid "System Prompt"
+msgstr "System Prompt"
+
+#. module: isd_dashboard
+#: model_terms:ir.ui.view,arch_db:isd_dashboard.res_config_settings_view_form_isd_dashboard
+msgid "API key from console.anthropic.com"
+msgstr "API key từ console.anthropic.com"
+
+#. module: isd_dashboard
+#: model_terms:ir.ui.view,arch_db:isd_dashboard.res_config_settings_view_form_isd_dashboard
+msgid "Sonnet 4.6 is the best choice: smart enough and not too slow"
+msgstr "Sonnet 4.6 là lựa chọn tốt nhất: đủ thông minh và không quá chậm"
+
+#. module: isd_dashboard
+#: model_terms:ir.ui.view,arch_db:isd_dashboard.res_config_settings_view_form_isd_dashboard
+msgid "MCP Token"
+msgstr "MCP Token"
+
+#. module: isd_dashboard
+#: model_terms:ir.ui.view,arch_db:isd_dashboard.res_config_settings_view_form_isd_dashboard
+msgid "Token for Claude to access PhotoApp data"
+msgstr "Token để Claude truy cập dữ liệu PhotoApp"
+
+#. module: isd_dashboard
+#: model_terms:ir.ui.view,arch_db:isd_dashboard.res_config_settings_view_form_isd_dashboard
+msgid "Display name for MCP server when Claude uses tools"
+msgstr "Tên hiển thị cho MCP server khi Claude sử dụng tools"
+
+#. module: isd_dashboard
+#: model_terms:ir.ui.view,arch_db:isd_dashboard.res_config_settings_view_form_isd_dashboard
+msgid "Instructions for Claude on how to respond and format HTML"
+msgstr "Hướng dẫn Claude cách trả lời và format HTML"
+
+#. module: isd_dashboard
+#: model_terms:ir.ui.view,arch_db:isd_dashboard.view_isd_dashboard_plan_form
+msgid "Usage Plan"
+msgstr "Gói sử dụng"
+
+#. module: isd_dashboard
+#: model_terms:ir.ui.view,arch_db:isd_dashboard.view_isd_dashboard_plan_form
+msgid "Period"
+msgstr "Khoảng thời gian"
+
+#. module: isd_dashboard
+#: model_terms:ir.ui.view,arch_db:isd_dashboard.view_isd_dashboard_plan_form
+msgid "Limits"
+msgstr "Giới hạn"
+
+#. module: isd_dashboard
+#: model_terms:ir.ui.view,arch_db:isd_dashboard.view_isd_dashboard_plan_form
+msgid "Current Usage"
+msgstr "Sử dụng hiện tại"
+
+#. module: isd_dashboard
+#: model_terms:ir.ui.view,arch_db:isd_dashboard.view_isd_dashboard_usage_list
+msgid "Daily Usage"
+msgstr "Sử dụng hàng ngày"
+
+#. module: isd_dashboard
+#: model_terms:ir.ui.view,arch_db:isd_dashboard.view_isd_dashboard_usage_pivot
+msgid "Usage Summary"
+msgstr "Tổng hợp sử dụng"
+
+#. module: isd_dashboard
+#: model_terms:ir.ui.view,arch_db:isd_dashboard.view_isd_dashboard_usage_graph
+msgid "Usage Chart"
+msgstr "Biểu đồ sử dụng"
+
+#. module: isd_dashboard
+#: code:addons/isd_dashboard/controllers/dashboard.py
+#, python-format
+msgid "The anthropic library is not installed."
+msgstr "Thư viện anthropic chưa được cài đặt."
+
+#. module: isd_dashboard
+#: code:addons/isd_dashboard/controllers/dashboard.py
+#, python-format
+msgid "Anthropic API Key is not configured."
+msgstr "Chưa cấu hình Anthropic API Key."
+
+#. module: isd_dashboard
+#: code:addons/isd_dashboard/controllers/dashboard.py
+#, python-format
+msgid "You do not have permission to run prompts. Contact the administrator."
+msgstr "Bạn không có quyền chạy prompt. Liên hệ quản trị viên."
+
+#. module: isd_dashboard
+#: code:addons/isd_dashboard/controllers/dashboard.py
+#, python-format
+msgid "Please select a report period."
+msgstr "Chưa chọn kỳ báo cáo."
+
+#. module: isd_dashboard
+#: code:addons/isd_dashboard/controllers/dashboard.py
+#, python-format
+msgid "Report period error: %s"
+msgstr "Lỗi kỳ báo cáo: %s"
+
+#. module: isd_dashboard
+#: code:addons/isd_dashboard/controllers/dashboard.py
+#, python-format
+msgid "Please select a comparison period."
+msgstr "Chưa chọn kỳ so sánh."
+
+#. module: isd_dashboard
+#: code:addons/isd_dashboard/controllers/dashboard.py
+#, python-format
+msgid "Comparison period error: %s"
+msgstr "Lỗi kỳ so sánh: %s"
+
+#. module: isd_dashboard
+#: code:addons/isd_dashboard/controllers/dashboard.py
+#, python-format
+msgid "Invalid report type."
+msgstr "Loại báo cáo không hợp lệ."
+
+#. module: isd_dashboard
+#: code:addons/isd_dashboard/controllers/dashboard.py
+#, python-format
+msgid "Report not found."
+msgstr "Báo cáo không tồn tại."
+
+#. module: isd_dashboard
+#: code:addons/isd_dashboard/static/src/js/dashboard_component.js
+#, javascript-format
+msgid "Connecting to AI system..."
+msgstr "Đang kết nối tới hệ thống AI..."
+
+#. module: isd_dashboard
+#: code:addons/isd_dashboard/static/src/js/dashboard_component.js
+#, javascript-format
+msgid "AI is querying data from the system..."
+msgstr "AI đang truy vấn dữ liệu từ hệ thống..."
+
+#. module: isd_dashboard
+#: code:addons/isd_dashboard/static/src/js/dashboard_component.js
+#, javascript-format
+msgid "Collecting transaction and revenue data..."
+msgstr "Đang thu thập dữ liệu giao dịch và doanh thu..."
+
+#. module: isd_dashboard
+#: code:addons/isd_dashboard/static/src/js/dashboard_component.js
+#, javascript-format
+msgid "AI is analyzing and aggregating data..."
+msgstr "AI đang phân tích và tổng hợp dữ liệu..."
+
+#. module: isd_dashboard
+#: code:addons/isd_dashboard/static/src/js/dashboard_component.js
+#, javascript-format
+msgid "Generating charts and visual reports..."
+msgstr "Đang tạo biểu đồ và báo cáo trực quan..."
+
+#. module: isd_dashboard
+#: code:addons/isd_dashboard/static/src/js/dashboard_component.js
+#, javascript-format
+msgid "Finalizing report, please wait..."
+msgstr "Đang hoàn thiện báo cáo, vui lòng chờ thêm..."
+
+#. module: isd_dashboard
+#: code:addons/isd_dashboard/static/src/js/dashboard_component.js
+#, javascript-format
+msgid "Report almost done, verifying data..."
+msgstr "Báo cáo gần hoàn thành, đang kiểm tra lại dữ liệu..."
+
+#. module: isd_dashboard
+#: code:addons/isd_dashboard/static/src/js/dashboard_component.js
+#, javascript-format
+msgid "Almost finished, just a few more seconds..."
+msgstr "Sắp xong rồi, chỉ thêm vài giây nữa..."
+
+#. module: isd_dashboard
+#: code:addons/isd_dashboard/static/src/js/dashboard_component.js
+#, javascript-format
+msgid "Already available — no AI tokens used."
+msgstr "Đã có sẵn — không tốn token AI."
+
+#. module: isd_dashboard
+#: code:addons/isd_dashboard/static/src/js/dashboard_component.js
+#, javascript-format
+msgid "Cannot connect to server."
+msgstr "Không thể kết nối đến server."
+
+#. module: isd_dashboard
+#: code:addons/isd_dashboard/static/src/js/dashboard_component.js
+#, javascript-format
+msgid "Error loading report."
+msgstr "Lỗi khi tải báo cáo."
+
+#. module: isd_dashboard
+#: code:addons/isd_dashboard/static/src/js/dashboard_component.js
+#, javascript-format
+msgid "Connection error. Please try again."
+msgstr "Lỗi kết nối. Vui lòng thử lại."
+
+#. module: isd_dashboard
+#: code:addons/isd_dashboard/static/src/js/dashboard_component.js
+#, javascript-format
+msgid "Report"
+msgstr "Báo cáo"
+
+#. module: isd_dashboard
+#: model_terms:ir.ui.view,arch_db:isd_dashboard.isd_dashboard_AiDashboard
+msgid "-- Select period --"
+msgstr "-- Chọn kỳ --"
+
+#. module: isd_dashboard
+#: model_terms:ir.ui.view,arch_db:isd_dashboard.isd_dashboard_AiDashboard
+msgid "-- Compare with --"
+msgstr "-- So sánh với --"
+
+#. module: isd_dashboard
+#: model_terms:ir.ui.view,arch_db:isd_dashboard.isd_dashboard_AiDashboard
+msgid "View Report"
+msgstr "Xem báo cáo"
+
+#. module: isd_dashboard
+#: model_terms:ir.ui.view,arch_db:isd_dashboard.isd_dashboard_AiDashboard
+msgid "Refresh"
+msgstr "Làm mới"
+
+#. module: isd_dashboard
+#: model_terms:ir.ui.view,arch_db:isd_dashboard.isd_dashboard_AiDashboard
+msgid "Refresh data (costs AI tokens)"
+msgstr "Làm mới dữ liệu (tốn token AI)"
+
+#. module: isd_dashboard
+#: model_terms:ir.ui.view,arch_db:isd_dashboard.isd_dashboard_AiDashboard
+msgid "Hide"
+msgstr "Ẩn"
+
+#. module: isd_dashboard
+#: model_terms:ir.ui.view,arch_db:isd_dashboard.isd_dashboard_AiDashboard
+msgid "Saved Reports"
+msgstr "Báo cáo đã lưu"
+
+#. module: isd_dashboard
+#: model_terms:ir.ui.view,arch_db:isd_dashboard.isd_dashboard_AiDashboard
+msgid "No reports yet."
+msgstr "Chưa có báo cáo nào."
+
+#. module: isd_dashboard
+#: model_terms:ir.ui.view,arch_db:isd_dashboard.isd_dashboard_AiDashboard
+msgid "Type"
+msgstr "Loại"
+
+#. module: isd_dashboard
+#: model_terms:ir.ui.view,arch_db:isd_dashboard.isd_dashboard_AiDashboard
+msgid "Created"
+msgstr "Ngày tạo"
+
+#. module: isd_dashboard
+#: model_terms:ir.ui.view,arch_db:isd_dashboard.isd_dashboard_AiDashboard
+msgid "Revenue"
+msgstr "Doanh thu"
+
+#. module: isd_dashboard
+#: model_terms:ir.ui.view,arch_db:isd_dashboard.isd_dashboard_AiDashboard
+msgid "Comparison"
+msgstr "So sánh"
+
+#. module: isd_dashboard
+#: model_terms:ir.ui.view,arch_db:isd_dashboard.isd_dashboard_AiDashboard
+msgid "View"
+msgstr "Xem"
+
+#. module: isd_dashboard
+#: model_terms:ir.ui.view,arch_db:isd_dashboard.isd_dashboard_AiDashboard
+msgid "Select report type and period above to view."
+msgstr "Chọn loại báo cáo và kỳ báo cáo ở trên để xem."
+
+#. module: isd_dashboard
+#: model_terms:ir.ui.view,arch_db:isd_dashboard.isd_dashboard_AiDashboard
+msgid "If a report is already available, it will display immediately without using AI tokens."
+msgstr "Nếu báo cáo đã có sẵn sẽ hiển thị ngay, không tốn token AI."
+
+#. module: isd_dashboard
+#: model_terms:ir.ui.view,arch_db:isd_dashboard.isd_dashboard_AiDashboard
+msgid "Close"
+msgstr "Đóng"
+
+#. module: isd_dashboard
+#: model_terms:ir.ui.view,arch_db:isd_dashboard.isd_dashboard_AiDashboard
+msgid "Back"
+msgstr "Quay lại"
+
+#. module: isd_dashboard
+#: model_terms:ir.ui.view,arch_db:isd_dashboard.isd_dashboard_AiDashboard
+msgid "Print Report"
+msgstr "In báo cáo"
+
+#. module: isd_dashboard
+#: model:isd.dashboard.plan,help:isd_dashboard.field_isd_dashboard_plan__prompt_limit
+msgid "Maximum prompts allowed in this plan period. 0 = unlimited."
+msgstr "Số lượt prompt tối đa trong gói. 0 = không giới hạn."
+
+#. module: isd_dashboard
+#: model:isd.dashboard.plan,help:isd_dashboard.field_isd_dashboard_plan__report_limit
+msgid "Maximum saved reports allowed. 0 = unlimited."
+msgstr "Số báo cáo lưu tối đa. 0 = không giới hạn."
+
+#. module: isd_dashboard
+#: sql_constraints:isd.dashboard.usage
+msgid "Only one usage record per date."
+msgstr "Chỉ một bản ghi sử dụng cho mỗi ngày."

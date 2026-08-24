@@ -7,31 +7,30 @@ class IsdDashboardReport(models.Model):
     _order = 'create_date desc'
 
     report_type = fields.Selection([
-        ('revenue', 'Báo cáo doanh thu'),
-        ('comparison', 'So sánh doanh thu'),
-    ], string='Loại báo cáo', required=True, index=True)
+        ('revenue', 'Revenue Report'),
+        ('comparison', 'Revenue Comparison'),
+    ], string='Report Type', required=True, index=True)
 
     period_type = fields.Selection([
-        ('week', 'Tuần'),
-        ('month', 'Tháng'),
-        ('quarter', 'Quý'),
-        ('year', 'Năm'),
-    ], string='Loại kỳ', required=True)
+        ('week', 'Week'),
+        ('month', 'Month'),
+        ('quarter', 'Quarter'),
+        ('year', 'Year'),
+    ], string='Period Type', required=True)
 
-    period_start = fields.Date(string='Từ ngày', required=True, index=True)
-    period_end = fields.Date(string='Đến ngày', required=True)
-    period_label = fields.Char(string='Kỳ báo cáo')
+    period_start = fields.Date(string='Period Start', required=True, index=True)
+    period_end = fields.Date(string='Period End', required=True)
+    period_label = fields.Char(string='Period Label')
 
-    # For comparison reports
-    compare_period_start = fields.Date(string='So sánh từ ngày')
-    compare_period_end = fields.Date(string='So sánh đến ngày')
-    compare_period_label = fields.Char(string='Kỳ so sánh')
+    compare_period_start = fields.Date(string='Compare Period Start')
+    compare_period_end = fields.Date(string='Compare Period End')
+    compare_period_label = fields.Char(string='Compare Period Label')
 
-    result_html = fields.Text(string='Kết quả HTML')
+    result_html = fields.Text(string='Result HTML')
     prompt_used = fields.Text(string='Prompt')
     state = fields.Selection([
-        ('generating', 'Đang tạo'),
-        ('done', 'Hoàn thành'),
-        ('error', 'Lỗi'),
-    ], string='Trạng thái', default='done', required=True)
-    error_message = fields.Text(string='Lỗi')
+        ('generating', 'Generating'),
+        ('done', 'Done'),
+        ('error', 'Error'),
+    ], string='Status', default='done', required=True)
+    error_message = fields.Text(string='Error Message')

@@ -11,14 +11,14 @@ class ResConfigSettings(models.TransientModel):
 
     isd_dashboard_api_key = fields.Char(
         string='Anthropic API Key',
-        help='API key từ console.anthropic.com (sk-ant-api03-...)',
+        help='API key from console.anthropic.com (sk-ant-api03-...)',
     )
     isd_dashboard_claude_model = fields.Selection(
         string='Claude Model',
         selection=[
-            ('claude-haiku-4-5-20251001', 'Claude Haiku 4.5 — Nhanh, rẻ nhất'),
-            ('claude-sonnet-4-6', 'Claude Sonnet 4.6 — Cân bằng (khuyến nghị)'),
-            ('claude-opus-4-6', 'Claude Opus 4.6 — Mạnh nhất, chậm hơn'),
+            ('claude-haiku-4-5-20251001', 'Claude Haiku 4.5 — Fast, cheapest'),
+            ('claude-sonnet-4-6', 'Claude Sonnet 4.6 — Balanced (recommended)'),
+            ('claude-opus-4-6', 'Claude Opus 4.6 — Most powerful, slower'),
         ],
         default='claude-sonnet-4-6',
     )
@@ -28,7 +28,7 @@ class ResConfigSettings(models.TransientModel):
         domain="[('is_active', '=', True)]",
     )
     isd_dashboard_mcp_server_name = fields.Char(
-        string='Tên MCP Server',
+        string='MCP Server Name',
         default='KClickPhotoApp',
     )
     isd_dashboard_system_prompt = fields.Text(

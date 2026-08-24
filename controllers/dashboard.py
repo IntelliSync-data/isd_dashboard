@@ -4,7 +4,7 @@ import uuid
 from datetime import date, timedelta
 
 import odoo
-from odoo import http
+from odoo import _, http
 from odoo.http import request
 
 _logger = logging.getLogger(__name__)
@@ -330,11 +330,11 @@ class IsdDashboardController(http.Controller):
         try:
             import anthropic  # noqa: F401
         except ImportError:
-            return {'error': 'Thu vien anthropic chua duoc cai dat.'}
+            return {'error': _('The anthropic library is not installed.')}
 
         api_key, claude_model, system_prompt, mcp_url, mcp_server_name = self._get_claude_config()
         if not api_key:
-            return {'error': 'Chua cau hinh Anthropic API Key.'}
+            return {'error': _('Anthropic API Key is not configured.')}
 
         plan = request.env['isd.dashboard.plan'].sudo().get_active_plan()
         over_limit = False
@@ -440,16 +440,16 @@ class IsdDashboardController(http.Controller):
                       compare_period_value='', force_refresh=False, **kwargs):
         """Submit a report request. Returns existing report or spawns Claude."""
         if not request.env.user.has_group('isd_dashboard.group_dashboard_manager'):
-            return {'error': 'Bạn không có quyền chạy prompt. Liên hệ quản trị viên.'}
+            return {'error': _('You do not have permission to run prompts. Contact the administrator.')}
         if not period_value:
-            return {'error': 'Chưa chọn kỳ báo cáo.'}
+            return {'error': _('Please select a report period.')}
 
         Report = request.env['isd.dashboard.report'].sudo()
 
         try:
             start, end, label = _parse_period(period_type, period_value)
         except Exception as e:
-            return {'error': f'Lỗi kỳ báo cáo: {e}'}
+            return {'error': _('Report period error: %s') % e}
 
         if report_type == 'revenue':
             # Check existing
@@ -496,12 +496,12 @@ class IsdDashboardController(http.Controller):
 
         elif report_type == 'comparison':
             if not compare_period_value:
-                return {'error': 'Chưa chọn kỳ so sánh.'}
+                return {'error': _('Please select a comparison period.')}
 
             try:
                 start2, end2, label2 = _parse_period(period_type, compare_period_value)
             except Exception as e:
-                return {'error': f'Lỗi kỳ so sánh: {e}'}
+                return {'error': _('Comparison period error: %s') % e}
 
             # Check existing
             domain = [
@@ -547,7 +547,7 @@ class IsdDashboardController(http.Controller):
             result['period_label'] = f'{label} vs {label2}'
             return result
 
-        return {'error': 'Loại báo cáo không hợp lệ.'}
+        return {'error': _('Invalid report type.')}
 
     # ── Saved reports list ──
 
@@ -571,7 +571,7 @@ class IsdDashboardController(http.Controller):
         """Return HTML of a saved report."""
         report = request.env['isd.dashboard.report'].sudo().browse(int(report_id))
         if not report.exists() or report.state != 'done':
-            return {'error': 'Báo cáo không tồn tại.'}
+            return {'error': _('Report not found.')}
         return {'status': 'done', 'html': report.result_html, 'report_id': report.id}
 
     # ── Poll (unchanged) ──

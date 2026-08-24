@@ -4,28 +4,29 @@ import { Component, useState, onWillStart } from "@odoo/owl";
 import { registry } from "@web/core/registry";
 import { useService } from "@web/core/utils/hooks";
 import { rpc } from "@web/core/network/rpc";
+import { _t } from "@web/core/l10n/translation";
 
 const LOADING_PHASES = [
-    { at: 0,  text: "\u0110ang k\u1EBFt n\u1ED1i t\u1EDBi h\u1EC7 th\u1ED1ng AI..." },
-    { at: 5,  text: "AI \u0111ang truy v\u1EA5n d\u1EEF li\u1EC7u t\u1EEB h\u1EC7 th\u1ED1ng..." },
-    { at: 12, text: "\u0110ang thu th\u1EADp d\u1EEF li\u1EC7u giao d\u1ECBch v\u00E0 doanh thu..." },
-    { at: 20, text: "AI \u0111ang ph\u00E2n t\u00EDch v\u00E0 t\u1ED5ng h\u1EE3p d\u1EEF li\u1EC7u..." },
-    { at: 35, text: "\u0110ang t\u1EA1o bi\u1EC3u \u0111\u1ED3 v\u00E0 b\u00E1o c\u00E1o tr\u1EF1c quan..." },
-    { at: 50, text: "\u0110ang ho\u00E0n thi\u1EC7n b\u00E1o c\u00E1o, vui l\u00F2ng ch\u1EDD th\u00EAm..." },
-    { at: 70, text: "B\u00E1o c\u00E1o g\u1EA7n ho\u00E0n th\u00E0nh, \u0111ang ki\u1EC3m tra l\u1EA1i d\u1EEF li\u1EC7u..." },
-    { at: 90, text: "S\u1EAFp xong r\u1ED3i, ch\u1EC9 th\u00EAm v\u00E0i gi\u00E2y n\u1EEFa..." },
+    { at: 0,  text: _t("Connecting to AI system...") },
+    { at: 5,  text: _t("AI is querying data from the system...") },
+    { at: 12, text: _t("Collecting transaction and revenue data...") },
+    { at: 20, text: _t("AI is analyzing and aggregating data...") },
+    { at: 35, text: _t("Generating charts and visual reports...") },
+    { at: 50, text: _t("Finalizing report, please wait...") },
+    { at: 70, text: _t("Report almost done, verifying data...") },
+    { at: 90, text: _t("Almost finished, just a few more seconds...") },
 ];
 
 const REPORT_TYPES = [
-    { value: "revenue", label: "B\u00E1o c\u00E1o doanh thu" },
-    { value: "comparison", label: "So s\u00E1nh doanh thu" },
+    { value: "revenue", label: _t("Revenue Report") },
+    { value: "comparison", label: _t("Revenue Comparison") },
 ];
 
 const PERIOD_TYPES = [
-    { value: "week", label: "Tu\u1EA7n" },
-    { value: "month", label: "Th\u00E1ng" },
-    { value: "quarter", label: "Qu\u00FD" },
-    { value: "year", label: "N\u0103m" },
+    { value: "week", label: _t("Week") },
+    { value: "month", label: _t("Month") },
+    { value: "quarter", label: _t("Quarter") },
+    { value: "year", label: _t("Year") },
 ];
 
 export class IsdAiDashboard extends Component {
@@ -35,14 +36,12 @@ export class IsdAiDashboard extends Component {
     setup() {
         this.notification = useService("notification");
         this.state = useState({
-            // Report config
             reportType: "revenue",
             periodType: "month",
             periodValue: "",
             comparePeriodValue: "",
             periodOptions: [],
 
-            // Execution state
             loading: false,
             error: null,
             hasResult: false,
@@ -50,11 +49,9 @@ export class IsdAiDashboard extends Component {
             loadingText: LOADING_PHASES[0].text,
             currentLabel: "",
 
-            // Saved reports
             savedReports: [],
             showSaved: false,
 
-            // Permissions
             canRunPrompt: false,
         });
 
@@ -75,8 +72,6 @@ export class IsdAiDashboard extends Component {
             await this._loadSavedReports();
         });
     }
-
-    // ── Data loading ──
 
     async _loadPeriodOptions() {
         try {
@@ -99,8 +94,6 @@ export class IsdAiDashboard extends Component {
             console.error("Failed to load saved reports:", err);
         }
     }
-
-    // ── Event handlers ──
 
     onReportTypeChange(ev) {
         this.state.reportType = ev.target.value;
@@ -127,8 +120,6 @@ export class IsdAiDashboard extends Component {
         }
         this.state.loadingText = text;
     }
-
-    // ── Submit report ──
 
     async onSubmit() {
         if (this.state.loading || !this.state.periodValue) return;
@@ -178,13 +169,12 @@ export class IsdAiDashboard extends Component {
                 this.state.currentLabel = result.period_label;
             }
 
-            // Cached result
             if (result.status === "done" && result.html) {
                 this._stopTimers();
                 this.state.loading = false;
                 this.state.hasResult = true;
                 if (result.from_cache) {
-                    this.notification.add("\u0110\u00E3 c\u00F3 s\u1EB5n - kh\u00F4ng t\u1ED1n token AI.", { type: "success" });
+                    this.notification.add(_t("Already available — no AI tokens used."), { type: "success" });
                 }
                 setTimeout(() => this._injectHtml(result.html), 50);
                 this._loadSavedReports();
@@ -197,12 +187,10 @@ export class IsdAiDashboard extends Component {
         } catch (err) {
             this._stopTimers();
             this.state.loading = false;
-            this.state.error = "Kh\u00F4ng th\u1EC3 k\u1EBFt n\u1ED1i \u0111\u1EBFn server.";
+            this.state.error = _t("Cannot connect to server.");
             console.error("ISD Dashboard error:", err);
         }
     }
-
-    // ── Saved reports ──
 
     onToggleSaved() {
         this.state.showSaved = !this.state.showSaved;
@@ -222,11 +210,9 @@ export class IsdAiDashboard extends Component {
             this.state.error = null;
             setTimeout(() => this._injectHtml(result.html), 50);
         } catch (err) {
-            this.state.error = "L\u1ED7i khi t\u1EA3i b\u00E1o c\u00E1o.";
+            this.state.error = _t("Error loading report.");
         }
     }
-
-    // ── Polling ──
 
     _startPolling(taskId) {
         this._pollTimer = setInterval(async () => {
@@ -247,12 +233,10 @@ export class IsdAiDashboard extends Component {
             } catch (err) {
                 this._stopTimers();
                 this.state.loading = false;
-                this.state.error = "L\u1ED7i k\u1EBFt n\u1ED1i. Vui l\u00F2ng th\u1EED l\u1EA1i.";
+                this.state.error = _t("Connection error. Please try again.");
             }
         }, 3000);
     }
-
-    // ── Utilities ──
 
     _stopTimers() {
         if (this._pollTimer) { clearInterval(this._pollTimer); this._pollTimer = null; }
@@ -342,7 +326,7 @@ export class IsdAiDashboard extends Component {
         });
         const cssHtml = cssLinks.map((href) => '<link rel="stylesheet" href="' + href + '"/>').join("\n");
         const printWindow = window.open("", "_blank");
-        printWindow.document.write("<!DOCTYPE html><html><head><title>B\u00E1o c\u00E1o</title>" +
+        printWindow.document.write("<!DOCTYPE html><html><head><title>" + _t("Report") + "</title>" +
             cssHtml + "<style>body{padding:20px;font-size:13px;background:#fff!important;}img{max-width:100%;height:auto;}" +
             "@media print{body{padding:10px;}}</style></head><body>" + clone.innerHTML + "</body></html>");
         printWindow.document.close();
